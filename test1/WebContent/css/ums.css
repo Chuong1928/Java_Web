@@ -1,0 +1,102 @@
+@charset "utf-8";
+body{
+	padding: 0;
+	margin: 0;
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+.main{
+	background-color: rgb(127 187 228);
+	height: 700px;
+}
+.m_left,.m_center,.m_right{
+	float: left;
+}
+.m_left{
+	height: 500px;
+    width: 16.6%;
+}
+.m_center{
+	max-width: 800px;
+    width: 44.6%;
+    text-align: center;
+    height: 500px;
+}
+.m_right{
+	height: 500px;
+	width: 33.33%;
+}
+.logo{
+	margin-top: 50px;
+}
+.logo img{
+	width: 112px;
+    height: 112px;
+}
+.ums_img{
+	margin-top: 70px;
+
+}
+.ums_img img{
+	vertical-align: middle;
+}
+.form_tt{
+	position: relative;
+    font-size: 25px;
+    color: #006eb7;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    top: 25px;
+    left: 10px;
+}
+.form_login{
+	position: relative;
+    width: 320px;
+    background: #f7f7f7;
+    height: 370px;
+    top: 40%;
+    border: 5px solid #6bb9f0;
+}
+.msv{
+	margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.pass{
+	margin-left: 10px;
+    margin-bottom: 10px;
+}
+.form_login input[type=text],input[type=password]{
+	height: 20px;
+  border-radius: 6px;
+    padding: 8px;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid #ccc;
+    width: 90%;
+}
+.myform:focus{
+	border-color: #66afe9 !important;
+  }
+  .btn_lg{
+  	color: #fff;
+    max-width: 90%;
+    width: 100%;
+    padding: 10px;
+    margin: 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    background: #337ab7;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+.left_logo img{
+	    border: 5px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 170px;
+    right: 217px;
+    z-index: 1;
+    width: 4%;
+}

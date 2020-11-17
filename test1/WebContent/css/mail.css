@@ -1,0 +1,130 @@
+@charset "utf-8";
+body{
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+.gmail{
+	position: absolute;
+    width: 42%;
+    right: 2%;
+ 	bottom: 0px;
+}
+ul>li{
+	margin-right: 15px;
+}
+.left{
+	    width: 100%;
+    float: left;
+}
+.tittle{
+	/*width: 15%;
+	float: left;*/
+    /*padding: 7px;*/
+    background-color: #404040;
+    border-radius: 8px 8px 0 0;
+
+}
+.control ul{
+	margin: 0;	
+	display: flex;
+}
+.control ul li a{
+	text-decoration: none;
+	margin-top: 10px;
+}
+.tittle h2{
+ 	
+    color: white;
+    letter-spacing: .2px;
+    font-size: inherit;
+}
+.connten{
+	box-shadow: rgba(0,0,0,0.2) 0 2px 6px;
+		background-color: #fff;
+}
+#to{
+	margin: 10px;
+	color: #777;
+    font-size: 15px;
+    text-align: left;
+    white-space: nowrap;
+}
+.connten input{
+	margin-left: 10px;	
+	height: 25px;
+    width: 80%;
+    outline: none;
+    font-size: 15px;
+    color: #888;
+    margin: 0;
+    max-width: 100%;
+    background: #fff;
+}
+hr{
+	width: 97%;
+    border: 0;
+    border-top: 1px solid #00000033;
+    }
+textarea{
+	height: 190px;
+    border: none;
+    margin-left: 10px;
+    width: 95%;
+    outline: none;
+}
+.btn{
+	
+}
+.sent{
+	cursor: pointer;
+	outline: none;
+	position: relative;
+	left: 3%;
+	    text-align: center;
+    border: none;
+    background: #297be6;
+    width: 15%;
+    height: 34px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid #3a28285c;
+}
+.select{
+    top: 3px;
+    margin-left: -4px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    left: 3%;
+    text-align: center;
+    border: none;
+    background: #297be6;
+    height: 34px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 21px;
+}
+.connten button:hover{
+	border-right: 1px solid #3a28285c;
+	background-color: #297be6;
+	box-shadow: rgba(0,0,0,0.2) 5px -4px 6px;
+/*	box-shadow: rgba(0,0,0,0.2) 0 2px 6px;*/
+	outline: 1px solid transparent;
+   
+}
+.select img{
+	margin-left: -10px;
+}
+ul {
+list-style: none;
+}
+ul li a img:hover{
+    background: #d0cdcd;
+}

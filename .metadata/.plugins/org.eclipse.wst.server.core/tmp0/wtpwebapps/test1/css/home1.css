@@ -1,0 +1,191 @@
+body {
+	    margin: 0;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-weight: 300;
+  font-family: "Lato", sans-serif;
+  background-color: #007dc4 !important;
+}
+.main{
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+/* Remove unde
+a:hover {
+  text-decoration: none;
+}
+/* Remove Bootstrap button outline */
+button .focus,
+a .focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+button:focus,
+a:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+.nav-open main {
+  transform: scale(.8);
+}
+
+
+
+h1 {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 45px;
+  color: white;
+}
+
+body {
+  text-align: center;
+  
+}
+
+.button {
+  display: inline-block;
+  background: #4285f4;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms;
+}
+.button:hover {
+  box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate(0px, -10px) scale(1.2);
+          transform: translate(0px, -10px) scale(1.2);
+}
+@media only screen and (max-width: 480px){
+		.digits{
+				height: 12%;
+		}
+		.anime_2020{
+
+		}
+		.digit{
+			width: 40px;
+		}
+		.card{
+			display: none;
+		}
+		
+
+
+		.content{
+			    left: 5px;
+			    position: relative;
+			    top: 0px;
+		}
+		.w3-dropdown-click{
+
+		}
+		.colors {
+		display: none;
+		}
+		#jquery-accordion-menu{
+		/*	position: relative;
+    top: -215px;*/
+		}
+}
+@media only screen and (max-width: 768px){
+	
+	
+
+		.menu_main{
+			display: none;
+		}
+		.card{
+			display: none;
+		}
+		.content {
+		    width: 260px;
+		     margin: 0 !important; 
+		}
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+		.menu_main{
+			padding: 0;
+			margin: 0;
+		}
+		
+
+		.card{
+			display: none;
+		}
+		.mynavbar{
+				display: none;
+			}
+		.menu_main{
+			overflow: scroll;
+    display: block;
+		}
+		.content {
+		    width: 260px;
+		    margin: 0 !important;
+		}
+		.main{
+
+		}
+		.digits{
+
+		}
+		.digit{
+			width: 40px;
+		}
+		.anime_2020{
+		position: relative;
+   	 left: 115px;
+		}
+		
+}
+@media only screen and (min-width: 1024px){
+	.menu_main{
+			padding: 0;
+			margin: 0;
+		}
+	.mynavbar{
+		display: none;
+	}
+	.card{
+			display: none;
+		}
+
+}
+.w3-section a{
+	    line-height: 50px;
+    display: block;
+}
+.prf :hover {
+	  background-color: yellow;
+    outline-width: 0;
+    border-radius: 25px;
+}
+
+.card-body{
+	padding: 0;
+}
+.w3-dropdown-click:hover {
+   background-color: #343a40 !important;
+}	
+.title_m {
+    position: relative;
+    left: -17%;
+    color: aliceblue;
+    /* top: 23%; */
+    top: 6px;
+}

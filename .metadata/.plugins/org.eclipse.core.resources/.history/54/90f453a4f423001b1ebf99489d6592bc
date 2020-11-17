@@ -1,0 +1,14 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+
+public class DungChung {
+	public Connection cn;
+	public void KetNoi() throws Exception {
+		//b1: Xac dinh HQTCSDL
+		Class.forName("");
+		cn=DriverManager.getConnection(url)
+	}
+}

@@ -1,0 +1,71 @@
+@charset "utf-8";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+table{
+	    position: relative;
+    width: 10%;
+    padding: 10px;
+    border: none;
+    left: 5%;
+}
+p{
+	margin: 5px;
+}
+.cuuchuong{
+	font-size: 13px;
+	font-weight: 600;
+}
+@media all and (min-width: 280px) {
+	table{
+	position: relative;
+    width: 80%;
+    padding: 10px;
+    border: none;
+    left: 10%;
+    font-size: 111%;
+}
+}
+@media all and (min-width: 320px) {
+	table{
+	position: relative;
+    width: 40%;
+    padding: 10px;
+    border: none;
+    left: 10%;
+    font-size: 111%;
+}
+}
+ 
+/* Dành cho máy tính bảng chiều dọc */
+@media all and (min-width: 600px) {
+	table{
+position: relative;
+    width: 21%;
+    padding: 10px;
+    border: none;
+    left: 10%;
+    font-size: 130%;
+}
+}
+ 
+/* Dành cho máy tính bảng chiều ngang */
+@media all and (min-width: 1024px) {
+table{
+	    position: relative;
+    width: 21%;
+    padding: 10px;
+    border: none;
+    left: 5%;
+}}
+ 
+/* Dành cho màn hình desktop */
+@media all and (min-width: 1280px) {
+table{
+	    position: relative;
+    width: 10%;
+    padding: 10px;
+    border: none;
+    left: 5%;
+}}

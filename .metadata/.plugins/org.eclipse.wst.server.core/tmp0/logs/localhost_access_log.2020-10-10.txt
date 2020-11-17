@@ -1,0 +1,17 @@
+127.0.0.1 - - [10/Oct/2020:21:37:16 +0700] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:16 +0700] "GET /test1/index.jsp HTTP/1.1" 200 17084
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:17 +0700] "GET /test1/css/minhkhai_style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:17 +0700] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:20 +0700] "GET /test1/index.jsp?type=Loai1 HTTP/1.1" 200 9406
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:21 +0700] "GET /test1/index.jsp?type=Loai2 HTTP/1.1" 200 8439
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:22 +0700] "GET /test1/index.jsp?type=Loai3 HTTP/1.1" 200 8425
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:23 +0700] "GET /test1/index.jsp?type=Loai1 HTTP/1.1" 200 9406
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:24 +0700] "GET /test1/cart.jsp?id=s1&action=add&tensach=T%E1%BB%AB%20Ng%E1%BB%AF%20H%C3%A1n%20Vi%E1%BB%87t&gia=60000 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:24 +0700] "GET /test1/viewcart.jsp HTTP/1.1" 200 161
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:27 +0700] "GET /test1/cart.jsp?id=s1&action=add&tensach=T%C3%A2y%20Du%20K%C3%AD&gia=60000 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:27 +0700] "GET /test1/viewcart.jsp HTTP/1.1" 200 172
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:29 +0700] "GET /test1/cart.jsp?id=s2&action=add&tensach=%C3%94ng%20gi%C3%A0%20v%C3%A0%20bi%E1%BB%83n%20c%E1%BA%A3&gia=60000 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:29 +0700] "GET /test1/viewcart.jsp HTTP/1.1" 200 197
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:38 +0700] "GET /test1/index.jsp?type=Loai1 HTTP/1.1" 200 9406
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:44 +0700] "GET /test1/cart.jsp?id=s9&action=add&tensach=L%E1%BA%ADp%20Tr%C3%ACnh%20C&gia=20000 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Oct/2020:21:37:44 +0700] "GET /test1/viewcart.jsp HTTP/1.1" 200 153
