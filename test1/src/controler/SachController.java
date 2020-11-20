@@ -51,7 +51,16 @@ public class SachController extends HttpServlet {
 				loaibo lbo= new loaibo();
 				ArrayList<loaibean> dsloai=lbo.getloai();
 				ArrayList<sachbean> dstk=new ArrayList<sachbean>();
+				ArrayList<sachbean> dstype=new ArrayList<sachbean>();
 				String key=request.getParameter("txttk");
+				String type=request.getParameter("type");
+				if(type!=null) {
+					for(sachbean s:ds) {
+						if(s.getLoai().toLowerCase().trim().equalsIgnoreCase(type.trim().toLowerCase())) {
+							dstype.add(s);
+						}
+					}
+				}
 				//response.getWriter().print(key);
 				if(key!=null) {
 				    for(sachbean s: ds) {
@@ -61,7 +70,7 @@ public class SachController extends HttpServlet {
 			        	}
 			        }
 				}
-				
+				request.setAttribute("dssach_type", dstype);
 		        request.setAttribute("dssach", ds);
 		        request.setAttribute("dsloai", dsloai);
 		        request.setAttribute("dssachtk", dstk);
@@ -69,6 +78,7 @@ public class SachController extends HttpServlet {
 //		        response.getWriter().print(s.getTensach());
 		        RequestDispatcher rd1=request.getRequestDispatcher("hahaha.jsp");
 		   		rd1.forward(request, response);
+	
 		} catch (Exception e) {	
 			// TODO: handle exception
 			e.printStackTrace();

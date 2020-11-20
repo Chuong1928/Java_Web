@@ -1,0 +1,10 @@
+package bean;
+
+public class khachhangbean {
+	private String makh;
+	private String hoten;
+	private String diachi;
+	private String sodt;
+	private String tendn;
+	private String pass;
+}

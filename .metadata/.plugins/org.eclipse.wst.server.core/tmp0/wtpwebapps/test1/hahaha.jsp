@@ -20,17 +20,22 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap JS -->
+    Bootstrap JS
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">    
     <link href="./css/home1.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/script.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/home3.css">
    <link rel="stylesheet" href="css/minhkhai_style.css">
     <link rel="stylesheet" href="css/login.css">
- 
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="./plugin/Plugin-phantrang/jquery.twbsPagination.js"></script> 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="plugin/Plugin-phantrang/jquery.twbsPagination.js" type="text/javascript"></script>
+    
 </head>
 <body>
 <%
@@ -38,17 +43,31 @@ response.setCharacterEncoding("utf-8");
 	ArrayList<loaibean> dsloai=(ArrayList<loaibean>)request.getAttribute("dsloai");
 	ArrayList<sachbean> ds=(ArrayList<sachbean>)request.getAttribute("dssach");
 	ArrayList<sachbean> dstk=(ArrayList<sachbean>)request.getAttribute("dssachtk");
+	ArrayList<sachbean> dstype=(ArrayList<sachbean>)request.getAttribute("dssach_type");
 	int m=dsloai.size();
 	int n=ds.size();
 	int o=dstk.size();
+	int k=dstype.size();
 	 long soluong=0;
      if (session.getAttribute("GioHang")!=null){
      	Giohangbo gh=(Giohangbo)session.getAttribute("GioHang");
      	soluong=gh.Sum_cart();
      }
 	Random rd=new Random();
-	
+	int current_page;
+	if(request.getParameter("page")==null) {
+		current_page=1;
+		
+	}else
+		current_page=Integer.parseInt(request.getParameter("page"));
+	int limit=8;
+	int total_page_of_type=(int)Math.ceil(k/8)+1;
+	if(current_page==1){
+	k=	limit*current_page;
+	}
+	int start=(current_page-1)*limit;
 %>
+
 <div class="header-blue fixed-top">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container-fluid"><a class="navbar-brand" href="#">MinhKhaiBook</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -56,7 +75,7 @@ response.setCharacterEncoding("utf-8");
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="SachController">Trang Chủ</a></li>
                             <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Lịch sử mua hàng</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Thanh toán</a></li>
+                          
                           
                             
                         </ul>
@@ -68,8 +87,19 @@ response.setCharacterEncoding("utf-8");
                           </div>
                         <% 
                         	if(session.getAttribute("username")!=null){
-                        		out.print("Xin chào"+session.getAttribute("username"));
-                        	}else{
+                        	
+                        		%>
+                        		
+                        		<div class="dropdown ">
+                        			
+									  <button class="dropbtn"><i class="fas fa-user user_icon"></i>Xin Chào <%=session.getAttribute("username") %></button>
+									  <div class="dropdown-content">
+									    <a href="profileController">Profile</a>
+									    <a href="#">Đơn hàng</a>
+									    <a href="dangxuatController">Log Out</a>
+									  </div>
+									</div>
+                        	<% }else{
                         		%>
                         		<form class="form-inline mr-auto" target="_self">
                             <!-- <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div> -->
@@ -90,8 +120,7 @@ response.setCharacterEncoding("utf-8");
             </div>
 
             <ul class="list-unstyled components">
-                <p>Bảng điều khiển</p>
-                <li  class="active"> <a href="hahaha.jsp" >Trang Chủ</a></li>
+       
                 <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Danh Mục Sách <span class="badge badge-pill badge-danger"style="margin-left: 10px;">Hot</span></a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -187,7 +216,8 @@ response.setCharacterEncoding("utf-8");
                      			<% }
                      			
                        		}
-                      	
+                    
+                   
                     	else  if(request.getParameter("type")==null){ %>
                        		<% for(int i=0;i<n;i++){
                     
@@ -211,43 +241,46 @@ response.setCharacterEncoding("utf-8");
                        		 </div>
                      		<%} %>
                        	
-                  <%     	}else if(request.getParameter("type")!=null){ %>
-
-                 <% 		 String loaisach=request.getParameter("type");
-                   			for(int i=0;i<n;i++){
-                   			if(ds.get(i).getLoai().equalsIgnoreCase(loaisach.toLowerCase().trim())){
+                  <%     	}else if(request.getParameter("type")!=null ){ 
+                	  		int c=0;
+                   			for(int i=start;i<k;i++){
+                   				c++;
                    				%>
                    			 <div class="book book_1 col-md-3 col-lg-3 col-sm-12 col-12">
                                 <div class="card" >
-                                    <img class="card-img-top" src="<%=ds.get(i).getAnh() %>" alt="Card image" style="width: 100%;height: 360px;">
+                                    <img class="card-img-top" src="<%=dstype.get(i).getAnh() %>" alt="Card image" style="width: 100%;height: 360px;">
                                     <div class="card-body">
-                                      <h4 class="card-title"><%=ds.get(i).getTensach() %></h4>
-                                       <p class="card-text">Giá : <%=(long)ds.get(i).getGia()+"  đ" %></p>
-                                       <a href="cart.jsp?id=<%=ds.get(i).getMasach() %>&action=view" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
-                                           <a  href="cart.jsp?id=<%=ds.get(i).getMasach() %>
+                                      <h4 class="card-title"><%=dstype.get(i).getTensach() %></h4>
+                                       <p class="card-text">Giá : <%=(long)dstype.get(i).getGia()+"  đ" %></p>
+                                       <a href="cart.jsp?id=<%=dstype.get(i).getMasach() %>&action=view" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                           <a  href="cart.jsp?id=<%=dstype.get(i).getMasach() %>
                                            &action=add
-                                           &tensach=<%=ds.get(i).getTensach()%>
-                                     	&hinhanh=<%=ds.get(i).getAnh()%>
-                                       &gia=<%=ds.get(i).getGia() %>&tacgia=<%=ds.get(i).getTacgia() %>" 
+                                           &tensach=<%=dstype.get(i).getTensach()%>
+                                     	&hinhanh=<%=dstype.get(i).getAnh()%>
+                                       &gia=<%=dstype.get(i).getGia() %>&tacgia=<%=ds.get(i).getTacgia() %>" 
                                         class="btn btn-primary add_to_cart" > <i class="fas fa-cart-plus"></i> Add To Cart</a>			
                                     </div>
                                   </div>
                        		 </div>
-                   			<% 	}
-                   		
+                   			<% 	
+                   			if(c==limit){
+                   				break;
                    			}
-                   			
+                   			}
+                   			for(int j=1;j<=total_page_of_type;j++){
+                   				
+                   				%>
+                   				<a href="SachController?type=<%=request.getParameter("type") %>&page=<%=j%>">Trang<%=j %></a>
+                   		<%}
                        	}
                        
                        
                        %>
                       
                     </div>
+			
 
               </div>
-
-
-            
 	</div>
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -319,10 +352,13 @@ response.setCharacterEncoding("utf-8");
 				                <span><i class="icon icon-user"></i></span>
 				            </div>
 				            <div class="form-group">
-				                <input type="text" class="form-control item" id="username1" placeholder="Username">
+				                <input type="text" class="form-control item" id="username1" placeholder="TenDangNhap">
 				            </div>
 				            <div class="form-group">
 				                <input type="password" class="form-control item" id="password1" placeholder="Password">
+				            </div>
+				                 <div class="form-group">
+				                <input type="text" class="form-control item" id="hoten" placeholder="Hovaten">
 				            </div>
 				            <div class="form-group">
 				                <input type="text" class="form-control item" id="email" placeholder="Email">
@@ -330,8 +366,9 @@ response.setCharacterEncoding("utf-8");
 				            <div class="form-group">
 				                <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number">
 				            </div>
+				       
 				            <div class="form-group">
-				                <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+				                <input type="text" class="form-control item" id="diachi" placeholder="DiaChi">
 				            </div>
 				            <div class="form-group">
 				                <button type="button" class="btn btn-block create-account">Create Account</button>
@@ -414,12 +451,49 @@ response.setCharacterEncoding("utf-8");
 					});
 					
 					</script>
+					<!-- Dangkytaikhoan -->
+					  <script type="text/javascript">
+					  $(document).ready(function(){
+					 
+					 $('.create-account').click(function(){
+						alert("Đăng kí");
+						// var url=$(this).attr('href');
+						// event.preventDefault();
+						var username=$('#username1').val();
+						var password=$('#password1').val();
+						var email=$('#email').val();
+						var diachi=$('#diachi').val();
+						var hoten=$('#hoten').val();
+						var sodth=$('#phone-number').val();
+						//alert(password);
+					   // AJAX Request
+		 			   $.ajax({
+					     url: 'sign_upController',
+					     type: 'POST',
+					     data: {username:username,
+					    		 password:password,
+					    		 email:email,
+					    		 diachi:diachi,
+					    		 hoten:hoten,
+					    		 sodth:sodth,
+		 			   			},
+					     success:function(response){
+					       if(response==1){
+					    	//   $('#my_modal').html('Đã thêm <strong>'+tensach[1]+'</strong> vào giỏ hàng');
+							  // $('#exampleModalCenter').modal('show');
+							 ///  document.getElementById('slcart').innerHTML = parseInt($("#slcart").html())+1;
+							 alert("Đăng Ký Thành Công")
+							window.location.assign("SachController");
+					      }else{
+					    alert(response);
+					    alert("Đăng Ký Thất Bại");
+					      }
+					       }
+					   }); 
+					 });
 					
-					<script>
-				/* 	$("#myycart").click(function(){
-						alert($("slcart").html());
-					})
- */
+					});
+					
 					</script>
 <script type="text/javascript">
 					  $(document).ready(function(){
@@ -471,7 +545,7 @@ response.setCharacterEncoding("utf-8");
 					})
  */
 					</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>
