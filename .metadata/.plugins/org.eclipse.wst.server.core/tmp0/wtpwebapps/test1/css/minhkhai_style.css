@@ -244,6 +244,7 @@ width: 100%;
 .book{
  /* background: yellow;*/
  color: black;
+ margin-bottom: 15px;
 }
 .number_input{
 	   display: flex;
@@ -330,5 +331,104 @@ position: relative;
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+.format{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+    background: #fff;
+    margin: 0 0 20px 66px;
+}
 
+.info-product{
+/* 	    background: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5%;
+    margin: 20px; */
+}
+.mycart{
+	padding: 20px 0 0 0;
+    background: #f4f4f4;
+
+}
+.img-product img{
+	width: 50%;
+}
+.method{
+	display: flex;
+	max-width: 48%;
+	width: 20%;
+	flex-direction: column-reverse;
+}
+.delete{position: absolute;right: 12%;}
+.checkout{
+padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.checkout ul{
+	    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+
+}
+.back-to-top #myBtn{
+	/*border-radius: 50% ;*/
+/*background-color: rgb(236, 240, 241);*/
+  font-size: 48px;
+  font-family: "Entypo";
+  color: rgb(189, 195, 199);
+  line-height: 0.5;
+  text-align: center;
+	border: none;
+}
+#button {
+  display: inline-block;
+  background-color: #ecf0f1;
+  width: 53px;
+  height: 53px;
+  text-align: center;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30px;
+  left: 5%;
+  /* right: 30px; */
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#button:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#button:active {
+  background-color: #555;
+}
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+.book.book_1.col-md-3.col-lg-3.col-sm-12.col-12:hover {
+    /* color: red; */
+    transform: translateY(-10px);
+}
+#thanhtoanhoadon img{
+	width: 80%;
+	margin: 0 auto;
+}
+#thongtinhoadon{
+	text-align: center;
+}
 

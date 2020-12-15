@@ -2,7 +2,9 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import bean.Giohangbean;
 import bean.loaibean;
@@ -57,5 +59,45 @@ public class sachdao {
 			ds.add(sach);
 		}rs.close();dc.cn.close();
 		return ds;
+	}
+	public int ThemSach(String masach,String tensach,String soluong,String gia,String maloai,String sotap,String anh,String NgayNhap,String tacgia) throws Exception {
+		dc.KetNoi();
+		String sql="INSERT INTO sach(masach,tensach,soluong,gia,maloai,sotap,anh,NgayNhap,tacgia)"
+				+ "VALUES(?,?,?,?,?,?,?,?,?)";
+		System.out.println(sql);
+		try {
+			PreparedStatement cmd=dc.cn.prepareStatement(sql);
+			cmd.setString(1, masach);
+			cmd.setString(2, tensach);
+			cmd.setString(3, soluong);
+			cmd.setString(4, gia);
+			cmd.setString(5, maloai);
+			cmd.setString(6, sotap);
+			cmd.setString(7, anh);
+			//SimpleDateFormat dd=new SimpleDateFormat("YYYY//MM/dd");
+			//Date ngaynhap= java.sql.Date.valueOf(NgayNhap);
+			cmd.setDate(8, java.sql.Date.valueOf(NgayNhap));
+			System.out.println("check:"+java.sql.Date.valueOf(NgayNhap));
+			cmd.setString(9, tacgia);
+			return cmd.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	public int XoaSach(String masach) throws Exception {
+		dc.KetNoi();
+		String sql="DELETE FROM sach where masach=?";
+		try {
+			PreparedStatement cmd=dc.cn.prepareStatement(sql);
+			cmd.setString(1, masach);
+			System.out.println(sql);
+			return cmd.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }

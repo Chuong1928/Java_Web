@@ -19,6 +19,24 @@ public class sachbo {
 		}
 		return null;
 	}
+	public int ThemSach(String masach,String tensach,String soluong,String gia,String maloai,String sotap,String anh,String NgayNhap,String tacgia) {
+		try {
+			return s1.ThemSach(masach, tensach, soluong, gia, maloai, sotap, anh, NgayNhap, tacgia);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public int XoaSach(String masach) {
+		try {
+			return s1.XoaSach(masach);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+	}
 //	public ArrayList<sachbean> addgiohang(String masach){
 //		giohang=s1.getsach(masach);
 //		return giohang;
@@ -39,5 +57,8 @@ public class sachbo {
 				tam.add(s);
 		}
 		return tam;
+	}
+	public double sum_Price(double soluong,double gia) {
+		return soluong*gia;
 	}
 }

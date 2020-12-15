@@ -29,60 +29,19 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/home3.css">
    <link rel="stylesheet" href="css/minhkhai_style.css">
+   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 <%
 		Random rd=new Random();
+		Giohangbo gh=(Giohangbo)session.getAttribute("GioHang");
 		ArrayList<sachbean> ds=(ArrayList<sachbean>)request.getAttribute("dssach");
 		ArrayList<loaibean> dsloai=(ArrayList<loaibean>)request.getAttribute("dsloai");
 		int n=ds.size();
 		int m=dsloai.size();
 		long soluong=(long)request.getAttribute("soluong");
 %>
-<div class="header-blue fixed-top">
-                <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-                <div class="container-fluid"><a class="navbar-brand" href="#">MinhKhaiBook</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navcol-1">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="SachController">Trang Chủ</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Lịch sử mua hàng</a></li>
-                          
-                          
-                            
-                        </ul>
-                          <div class="search_book">
-                            <form action="">
-                              <input class="form-control " id="searchbook" placeholder="Tìm sách" name="txttk" >
-                            
-                            </form>
-                          </div>
-                        <% 
-                        	if(session.getAttribute("username")!=null){
-                        	
-                        		%>
-                        		
-                        		<div class="dropdown ">
-                        			
-									  <button class="dropbtn"><i class="fas fa-user user_icon"></i>Xin Chào <%=session.getAttribute("username") %></button>
-									  <div class="dropdown-content">
-									    <a href="profileController">Profile</a>
-									    <a href="#">Đơn hàng</a>
-									    <a href="dangxuatController">Log Out</a>
-									  </div>
-									</div>
-                        	<% }else{
-                        		%>
-                        		<form class="form-inline mr-auto" target="_self">
-                            <!-- <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div> -->
-                        </form><span class="navbar-text"> <a id="f-login" href="#"  class="login">Log In</a></span><a class="btn btn-light action-button" id="f-signup" role="button" href="#">Sign Up</a></div>
-                        
-                       <%  	}
-                       			
-                        %>
-                </div>
-            </nav>
-           
-        </div>
+<%@include file="header.jsp" %>
  <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
@@ -159,44 +118,38 @@
                 </div>
             </nav>
             <!-- Content -->
-			<div class="mycart">
-				<%
+	<div class="mycart">
+	<%
 	
-		Giohangbo gh=(Giohangbo)session.getAttribute("GioHang");
-		if(gh==null){
-			
-		}
-		if(gh!=null){int i=1; %>
-				<table class="table table-bordered" id="giohang">
-			  <thead>
-			    <tr>
-			      <th scope="col">STT</th>
-			      <th scope="col">Tên sách</th>
-			      <th scope="col">Mã sách sách</th>
-			       <th scope="col">Hình ảnh</th>
-			      <th scope="col">Số Lượng</th>
-			      <th scope="col">Giá Bán</th>
-			      <th scope="col">Thao tác</th>
-			    </tr>
-			  </thead>
-		<% 	for(Giohangbean g:gh.ds){
-				
+		
+
+		 if(gh!=null && gh.ds.size()!=0){
+			int i=1;
 				%>
-	
-			<tbody >
-			    <tr>
-			      <td id="stt"><%=i %></td>
-			      <td><%=g.getTensach() %></td>
-			      <td id="masach<%=i%>"><%=g.getMasach().trim()%></td>
-			       <td> <img src="<%=g.getAnh() %>" ></td>
-			      <td><div class="number_input">
-			      	<span class="tru" id="number_down" onclick="tru<%=i%>()">-</span>
-			      	<input type="tel" class="soluong_input" id="soluong<%=i %>" value="<%=(int)g.getSoluong()%>">
-			      	<span class="cong" id="number_up" onclick="cong<%=i%>()">+</span></div></td>
-			      <td><%=(long)g.getGiaban()+" đ"%></td>
-			     <%--  <td><a href='deleteController?masach=<%=g.getMasach()%>'>Xóa</td> --%>
-			      <td> <button class="delete btn btn-outline-danger" id="del_<%=g.getMasach()%>">Xóa</button></td>
-			    </tr>
+				<div class="row" id="giohang">
+					<div class="col-md-8 col-lg-8 col-xl-8 col-sm-12 info-product">
+					<% for(Giohangbean g:gh.ds){
+							%>
+						<div class="format">
+							<div class="img-product">
+								<img src="<%=g.getAnh() %>" >
+							</div>
+						<div class="name-product">
+								<h3><%=g.getTensach() %></h3>
+								<p>Tác giả : <%=g.getTacgia() %></p>
+								<p> <%=(long)g.getGiaban()+" đ"%> </p>
+						</div>
+						<div class="method">
+								<div class="number_input">
+							      	<span class="tru" id="number_down" onclick="tru<%=i%>()">-</span>
+							      	<input type="tel" class="soluong_input" id="soluong<%=i %>" value="<%=(int)g.getSoluong()%>">
+							      	<span class="cong" id="number_up" onclick="cong<%=i%>()">+</span>
+
+				      			</div>
+				      			
+						</div>
+						<button class="delete btn btn-outline-danger" id="del_<%=g.getMasach()%>">Xóa</button>
+				</div>
 				<script type="text/javascript">
 					function cong<%=i%>()
 					{
@@ -222,7 +175,6 @@
 					 // tăng số lượng 
 					 $('.cong').click(function(){
 					   var slm=parseInt(document.getElementById('soluong<%=i%>').value);
-					
 					   //  id
 					   var deleteid = '<%=g.getMasach().trim() %>';
 					   // AJAX Request
@@ -246,15 +198,33 @@
 					});
 					
 					</script>
-	 		</tbody>
-			
 				
-		<%	
-		i++;
-		}
-		}
+						
+		<%	i++;}
 		%>
-</table>
+					</div>
+					<div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 ">
+						<div class="checkout">
+							<ul>
+								<li>Thành tiền</li>
+								<li><h3><%=gh.checkout()%> đ</h3></li>
+							</ul>
+							<button type="button" class="btn btn-success thanhtoan">Thanh Toán</button>
+						</div>
+						
+						
+					</div>
+				</div>
+	<%  }else{
+		%>
+		<div class="alert alert-success">
+		    <strong>KHÔNG CÓ GÌ HẾT!</strong> Quay lại <a href="SachController" class="alert-link">MUA NGAY</a>.
+		  </div>
+		<% 
+			}
+	
+		%>
+	
 	<style type="text/css">
 
 		.loading{
@@ -316,8 +286,49 @@
 		}
 	</style> 
 	<button class="loading" id="load">Button</button>
-	<script type="text/javascript">
 	
+	<script type="text/javascript">
+$(document).ready(function(){
+	$(".thanhtoan").click(function(){
+		var  tendn="<%=session.getAttribute("username")!=null?session.getAttribute("username"):"1"%>";
+		if(tendn=="1"){
+			alert("Bạn chưa đăng nhập");
+			$('#myModal').modal('show');
+		}else{
+			//alert("Bạn đax đăng nhập");
+			window.location.assign("ThanhToanController");
+		}
+/* 		alert("thanh toan");
+		// Add Success Class After 3.7 Seconds
+		
+	   $.ajax({
+     url: 'ThanhToanController',
+     type: 'GET',
+     data: { id:deleteid },
+     success:function(response){
+       if(response ==1){
+ 		  $(el).closest('div').css('background','tomato');
+		   $(el).closest('div').fadeOut(800,function(){
+		      $(this).remove();
+		   });
+		   document.getElementById('slcart').innerHTML = $("#slcart").html()-1;
+		   window.location.assign("ViewcartController");
+      }else{
+    alert('Invalid ID.');
+    alert(response);
+      }
+
+    }
+   }); */
+
+		// Remove class after 5 second
+	
+		//window.location.assign("ThanhToanController");
+	});
+});
+
+</script>
+<script type="text/javascript">
 $(document).ready(function(){
 	$(".cong").click(function(){
 		document.getElementById('giohang').style.opacity = "0.09";
@@ -335,7 +346,7 @@ $(document).ready(function(){
 			$(".loading").removeClass("btn-active");
 			$(".loading").removeClass("success");
 		}, 1000);
-		
+		window.location.assign("ViewcartController");
 	});
 });
 
@@ -360,11 +371,12 @@ $(document).ready(function(){
      data: { id:deleteid },
      success:function(response){
        if(response ==1){
- 		  $(el).closest('tr').css('background','tomato');
-		   $(el).closest('tr').fadeOut(800,function(){
+ 		  $(el).closest('div').css('background','tomato');
+		   $(el).closest('div').fadeOut(800,function(){
 		      $(this).remove();
 		   });
 		   document.getElementById('slcart').innerHTML = $("#slcart").html()-1;
+		   window.location.assign("ViewcartController");
       }else{
     alert('Invalid ID.');
     alert(response);
@@ -378,12 +390,13 @@ $(document).ready(function(){
 });
 </script>
 			
-			</div>
+</div>
 
 
             
 	</div>
 </div>
+<%@include file="modal.jsp" %>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -418,6 +431,111 @@ $(document).ready(function(){
 						document.getElementById('slcart').innerHTML = $("#slcart").html()-1;}
 					}) */
 
+					</script>
+	 <script type="text/javascript">
+        $(document).ready(function () {
+            $('#f-login').click(function() {
+            	  $('#myModal').modal('show');
+            });
+        });
+    </script>
+    	  <script type="text/javascript">
+        $(document).ready(function () {
+        	$(document).ready(function(){
+        		/*   $('#birth-date').mask('00/00/0000');
+        		  $('#phone-number').mask('0000-0000'); */
+        		 });
+            $('#f-signup').click(function() {
+            	  $('#sign_modal').modal('show');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+					  $(document).ready(function(){
+					 
+					 $('.login_btn').click(function(){
+						// alert("Đăng Nhập");
+						// var url=$(this).attr('href');
+						// event.preventDefault();
+						var username=$('#email2').val();
+						var password=$('#password2').val();
+						//alert(password);
+					   // AJAX Request
+		 			   $.ajax({
+					     url: 'dangnhapController',
+					     type: 'POST',
+					     data: {username:username,
+					    	 password:password
+		 			   			},
+					     success:function(response){
+					       if(response==1){
+					    	//   $('#my_modal').html('Đã thêm <strong>'+tensach[1]+'</strong> vào giỏ hàng');
+							  // $('#exampleModalCenter').modal('show');
+							 ///  document.getElementById('slcart').innerHTML = parseInt($("#slcart").html())+1;
+							 alert("Đăng Nhập Thành Công");
+							window.location.assign("ViewcartController");
+					      }else{
+					    alert(response);
+					    alert("Đăng Nhập Thất Bại");
+					      }
+					       }
+					   }); 
+					 });
+					
+					});
+					
+					</script>
+					<!-- Dangkytaikhoan -->
+					  <script type="text/javascript">
+					  $(document).ready(function(){
+					 
+					 $('.create-account').click(function(){
+						alert("Đăng kí");
+						// var url=$(this).attr('href');
+						// event.preventDefault();
+						var username=$('#username1').val();
+						var password=$('#password1').val();
+						var email=$('#email').val();
+						var diachi=$('#diachi').val();
+						var hoten=$('#hoten').val();
+						var sodth=$('#phone-number').val();
+						//alert(password);
+					   // AJAX Request
+		 			   $.ajax({
+					     url: 'sign_upController',
+					     type: 'POST',
+					     data: {username:username,
+					    		 password:password,
+					    		 email:email,
+					    		 diachi:diachi,
+					    		 hoten:hoten,
+					    		 sodth:sodth,
+		 			   			},
+					     success:function(response){
+					       if(response==1){
+					    	//   $('#my_modal').html('Đã thêm <strong>'+tensach[1]+'</strong> vào giỏ hàng');
+							  // $('#exampleModalCenter').modal('show');
+							 ///  document.getElementById('slcart').innerHTML = parseInt($("#slcart").html())+1;
+							 alert("Đăng Ký Thành Công")
+							window.location.assign("ViewcartController");
+					      }else{
+					    alert(response);
+					    alert("Đăng Ký Thất Bại");
+					      }
+					       }
+					   }); 
+					 });
+					
+					});
+					
 					</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

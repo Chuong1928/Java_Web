@@ -52,6 +52,7 @@ public class ViewcartController extends HttpServlet {
 		 request.setAttribute("dssach", ds);
 		 request.setAttribute("soluong", soluong);
 		 request.setAttribute("dsloai", dsloai);
+		 //,response.getWriter().print(session.getAttribute("GioHang"));
 		 RequestDispatcher rd1=request.getRequestDispatcher("viewmycart.jsp");
 	   	 rd1.forward(request, response);
 	} catch (Exception e) {

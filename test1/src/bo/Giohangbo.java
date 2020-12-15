@@ -33,6 +33,14 @@ public class Giohangbo {
 			}
 		}
 	}
+	public  long checkout() {
+		//Giohangbean gh=new Giohangbean();
+		long sum=0;
+		for(Giohangbean ghb:ds ) {
+			sum+=ghb.getSoluong()*ghb.getGiaban();
+		}
+		return sum;
+	}
 	public int Sum_cart() {
 		int sl=0;
 		for(Giohangbean ghb:ds) {

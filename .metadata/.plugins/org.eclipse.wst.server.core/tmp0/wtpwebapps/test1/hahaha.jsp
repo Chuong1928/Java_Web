@@ -20,7 +20,6 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    Bootstrap JS
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">    
     <link href="./css/home1.css" rel="stylesheet">
@@ -31,15 +30,10 @@
   <link rel="stylesheet" href="./css/home3.css">
    <link rel="stylesheet" href="css/minhkhai_style.css">
     <link rel="stylesheet" href="css/login.css">
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="./plugin/Plugin-phantrang/jquery.twbsPagination.js"></script> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
-    <script src="plugin/Plugin-phantrang/jquery.twbsPagination.js" type="text/javascript"></script>
-    
 </head>
 <body>
 <%
-response.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
 	ArrayList<loaibean> dsloai=(ArrayList<loaibean>)request.getAttribute("dsloai");
 	ArrayList<sachbean> ds=(ArrayList<sachbean>)request.getAttribute("dssach");
 	ArrayList<sachbean> dstk=(ArrayList<sachbean>)request.getAttribute("dssachtk");
@@ -68,50 +62,7 @@ response.setCharacterEncoding("utf-8");
 	int start=(current_page-1)*limit;
 %>
 
-<div class="header-blue fixed-top">
-            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-                <div class="container-fluid"><a class="navbar-brand" href="#">MinhKhaiBook</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navcol-1">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="SachController">Trang Chủ</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Lịch sử mua hàng</a></li>
-                          
-                          
-                            
-                        </ul>
-                          <div class="search_book">
-                            <form action="">
-                              <input class="form-control " id="searchbook" placeholder="Tìm sách" name="txttk" >
-                            
-                            </form>
-                          </div>
-                        <% 
-                        	if(session.getAttribute("username")!=null){
-                        	
-                        		%>
-                        		
-                        		<div class="dropdown ">
-                        			
-									  <button class="dropbtn"><i class="fas fa-user user_icon"></i>Xin Chào <%=session.getAttribute("username") %></button>
-									  <div class="dropdown-content">
-									    <a href="profileController">Profile</a>
-									    <a href="#">Đơn hàng</a>
-									    <a href="dangxuatController">Log Out</a>
-									  </div>
-									</div>
-                        	<% }else{
-                        		%>
-                        		<form class="form-inline mr-auto" target="_self">
-                            <!-- <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div> -->
-                        </form><span class="navbar-text"> <a id="f-login" href="#"  class="login">Log In</a></span><a class="btn btn-light action-button" id="f-signup" role="button" href="#">Sign Up</a></div>
-                        
-                       <%  	}
-                       			
-                        %>
-                </div>
-            </nav>
-           
-        </div>
+<%@include file="header.jsp" %>
  <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
@@ -143,9 +94,7 @@ response.setCharacterEncoding("utf-8");
                             <a href="#"><i class="nav-main-link-icon fa fa-headset"></i>Hỗ Trợ</a>
                   </li>
             </ul>
-    <div class="col-3 back-to-top">
-                  <a id="buttonb"></a>
-                </div>
+    
             <ul class="list-unstyled CTAs">
                 <li>
                     <a href="https://www.youtube.com/watch?v=6PebsRhDesA&t=64s" class="download" target="_blank"><i class="nav-main-link-icon fab fa-youtube " style="color: red;"></i>Video hướng dẫn mua sách trên web</a>
@@ -283,112 +232,10 @@ response.setCharacterEncoding("utf-8");
               </div>
 	</div>
 </div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Thông Báo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="my_modal">
-       
-      </div>
-      <div class="modal-footer">
-        <a type="button" class="btn btn-outline-primary" data-dismiss="modal">Tiếp Tục Mua Sách</a>
-      <!--   <a href="index.jsp" type="button" class="btn btn-outline-primary">Tiếp Tục Mua Sách</a> -->
-   		<a href="ViewcartController" type="button" class="btn btn-outline-success">Xem giỏ hàng</a>
-      </div>
-    </div>
-  </div>
-</div>
-		<!-- Login modal-->
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-       <!-- Modal body -->
-       
-        	<div class="login_form_wrapper">
-		
-		        <div class="row">
-		            <div class="col-md-12 col-md-offset-2">
-		                <!-- login_wrapper -->
-		                <div class="login_wrapper">
-		                    <div class="row">
-		                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="#" class="btn btn-primary facebook"> <span>Login with Facebook</span> <i class="fa fa-facebook"></i> </a> </div>
-		                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="#" class="btn btn-primary google-plus"> Login with Google <i class="fa fa-google-plus"></i> </a> </div>
-		                    </div>
-		                    <h2>or</h2>
-		                    <div class="formsix-pos">
-		                        <div class="form-group i-email"> <input type="email" class="form-control"  id="email2" placeholder="UserName"> </div>
-		                    </div>
-		                    <div class="formsix-e">
-		                        <div class="form-group i-password"> <input type="password" class="form-control" id="password2" placeholder="Password"> </div>
-		                    </div>
-		                    <div class="login_remember_box"> <label class="control control--checkbox">Remember me <input type="checkbox"> <span class="control__indicator"></span> </label> <a href="#" class="forget_password"> Forgot Password </a> </div>
-		                    <div class="login_btn_wrapper"> <a href="#" class="btn btn-primary login_btn"> Login </a> </div>
-		                    <div class="login_message">
-		                        <p>Don’t have an account ? <a href="#"> Sign up </a> </p>
-		                    </div>
-		                </div> <!-- /.login_wrapper-->
-		            </div>
-		        </div>
-  
-				</div>
-      </div>
-    </div>
-  </div>
-		<!-- Login modal-->
-		<!-- sign modal-->
-		  <div class="modal fade" id="sign_modal">
-		    <div class="modal-dialog">
-		      <div class="modal-content">      
-		        <!-- Modal body -->
-		        <div class="modal-body">
-		          	    <div class="registration-form">
-				        <form>
-				            <div class="form-icon">
-				                <span><i class="icon icon-user"></i></span>
-				            </div>
-				            <div class="form-group">
-				                <input type="text" class="form-control item" id="username1" placeholder="TenDangNhap">
-				            </div>
-				            <div class="form-group">
-				                <input type="password" class="form-control item" id="password1" placeholder="Password">
-				            </div>
-				                 <div class="form-group">
-				                <input type="text" class="form-control item" id="hoten" placeholder="Hovaten">
-				            </div>
-				            <div class="form-group">
-				                <input type="text" class="form-control item" id="email" placeholder="Email">
-				            </div>
-				            <div class="form-group">
-				                <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number">
-				            </div>
-				       
-				            <div class="form-group">
-				                <input type="text" class="form-control item" id="diachi" placeholder="DiaChi">
-				            </div>
-				            <div class="form-group">
-				                <button type="button" class="btn btn-block create-account">Create Account</button>
-				            </div>
-				        </form>
-					        <div class="social-media">
-					            <h5>Sign up with social media</h5>
-					            <div class="social-icons">
-					                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
-					                <a href="#"><i class="icon-social-google" title="Google"></i></a>
-					                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
-					            </div>
-					        </div>
-    </div>
-  
-		        </div>       
-		      </div>
-		    </div>
-		  </div>
-		  
+<%@include file="modal.jsp" %>
+		  	<div class="col-3 back-to-top">
+                  <a id="button"></a>
+        </div>
   	<!-- sign modal-->
 	  <script type="text/javascript">
         $(document).ready(function () {
@@ -400,8 +247,8 @@ response.setCharacterEncoding("utf-8");
     	  <script type="text/javascript">
         $(document).ready(function () {
         	$(document).ready(function(){
-        		  $('#birth-date').mask('00/00/0000');
-        		  $('#phone-number').mask('0000-0000');
+        		/*   $('#birth-date').mask('00/00/0000');
+        		  $('#phone-number').mask('0000-0000'); */
         		 });
             $('#f-signup').click(function() {
             	  $('#sign_modal').modal('show');
@@ -495,7 +342,7 @@ response.setCharacterEncoding("utf-8");
 					});
 					
 					</script>
-<script type="text/javascript">
+					<script type="text/javascript">
 					  $(document).ready(function(){
 					 
 					 $('.add_to_cart').click(function(){
@@ -539,12 +386,25 @@ response.setCharacterEncoding("utf-8");
 					
 					</script>
 					
-					<script>
-				/* 	$("#myycart").click(function(){
-						alert($("slcart").html());
-					})
- */
-					</script>
+	<!--      back to top -->
+			 <script type="text/javascript">
+			  var btn = $('#button');
+			
+			$(window).scroll(function() {
+			  if ($(window).scrollTop() > 300) {
+			    btn.addClass('show');
+			  } else {
+			    btn.removeClass('show');
+			  }
+			});
+			
+			btn.on('click', function(e) {
+			  e.preventDefault();
+			  $('html, body').animate({scrollTop:0}, '300');
+			});
+			
+			
+			</script> 
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script> -->
 </body>
