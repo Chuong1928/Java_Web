@@ -1,3 +1,4 @@
+<%@page import="bean.khachhangbean"%>
 <%@page import="bean.Hoadonbean"%>
 <%@page import="dao.MyFunction"%>
 <%@page import="bean.Lichsumuahang"%>
@@ -40,6 +41,7 @@
 		ArrayList<sachbean> ds=(ArrayList<sachbean>)request.getAttribute("dssach");
 		ArrayList<loaibean> dsloai=(ArrayList<loaibean>)request.getAttribute("dsloai");
 		ArrayList<Lichsumuahang> donhang=(ArrayList<Lichsumuahang>)request.getAttribute("donhang");
+		ArrayList<khachhangbean> khachhangbean=(ArrayList<khachhangbean>)request.getAttribute("khachhang");
 		MyFunction f=new MyFunction();
 		int sl=f.Count_Sum_HD(donhang);
 		int n=ds.size();
@@ -129,13 +131,15 @@
             </nav>
             <!-- Content -->
 	<div class="mycart">
-	<div class="table-responsive">
-							<h3>Đơn hàng cần thanh toán <%=sl%></h3>		
+<%-- 	<div class="table-responsive">
+							<h3 style="text-align: center;">Bạn có <%=sl%> Đơn hàng cần thanh toán</h3>		
 							<table class="table">
 								  <thead class="thead-dark">
 								    <tr>
 								      <th scope="col">Mã Hóa Đơn</th>
 								      <th scope="col">Tên sách</th>
+								       <th scope="col">Gía bán</th>
+								       <th scope="col">Số Lượng Mua</th>
 								      <th scope="col">Tổng tiền</th>
 								    </tr>
 								  </thead>
@@ -154,6 +158,8 @@
 									<tr>
 										<td><%=donhang.get(j).getMahoadon() %></td>
 										<td><%=donhang.get(j).getTensach()%></td>
+										<td><%=donhang.get(j).getGia()%></td>
+										<td><%=donhang.get(j).getSoluongmua()%></td>
 										<td><%=f.sum_Price(donhang.get(j).getSoluongmua(), donhang.get(j).getGia()) %></td>
 										<% if(j==x-1) break; %>
 									</tr>
@@ -172,7 +178,60 @@
 						%>
 					</table>
 				
-				</div>
+				</div> --%>
+				
+			<div class="row">
+					<div class="col-md-12 col-lg-5 col-xl-8 ">
+						<div class="chitietdh">
+							<div class="chitietdh-titile">
+								<h3>Đơn hàng  <%=gh.Sum_cart()%> sản phẩm </h3>
+								<a  class="btn btn-secondary" href="ViewcartController" role="button">Chỉnh Sửa</a>
+							</div>
+							<hr>
+							<%
+							for(Giohangbean g:gh.ds){%>
+								<div class="chitietdh-content">
+									<div class="thongtinsp">
+										<p><%=(int)g.getSoluong() %> x <%=g.getTensach() %></p>
+										<p>Tác giả : <%=g.getTacgia() %></p>
+										<hr>
+									</div>
+									<div class="gia">
+										<p><%=(int)f.sum_Price(g.getSoluong(),g.getGiaban())+" vnd" %></p>
+									</div>
+								</div>
+									
+							<%}%>
+								<div class="chitietdh-content ">
+									<p>Thành Tiền</p>
+									<p><%=gh.checkout()%> vnđ</p>
+								</div>
+						</div>
+						
+						
+					</div>
+					<div class="col-md-12 col-lg-5 col-xl-4">
+						
+						<div class="diachi">
+							<div class="chitietdh-titile">
+								<h3> Địa chỉ giao hàng</h3>
+								<a  class="btn btn-secondary" href="profileController" role="button">Chỉnh Sửa</a>
+								
+							</div>
+							<hr>
+							<div class="diachi-content">
+								<h4><%=khachhangbean.get(0).getHoten() %></h4>
+								<p><%=khachhangbean.get(0).getDiachi() %></p>
+								<p>Điện thoại : <%=khachhangbean.get(0).getSodt() %></p>
+							</div>
+						</div>
+						<div class="btn-dathang">
+							<button type="button" class="btn btn-danger btn-datmua">Đặt Mua</button>
+							<p>(Xin vui lòng kiểm tra lại đơn hàng trước khi Đặt Mua)</p>
+						</div>
+					</div>
+					
+			</div>
 			</div>
 	</div>
 </div>

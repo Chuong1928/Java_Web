@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import bean.Lichsumuahang;
+import bean.khachhangbean;
 import bean.Giohangbean;
 import bean.sachbean;
 
@@ -253,7 +254,34 @@ public class MyFunction {
 				}
 
 		return lsmh;
+	}				
+public ArrayList<khachhangbean> Thongtinkhachhang(String tendn)throws Exception{
+	ArrayList<khachhangbean> thongtin = new ArrayList<khachhangbean>();
+	dc.KetNoi();
+	String sql = "SELECT * FROM KhachHang WHERE tendn=?";
+	try {
+		PreparedStatement cmd=dc.cn.prepareStatement(sql);
+		cmd.setString(1, tendn);
+		ResultSet rs=cmd.executeQuery();
+		while(rs.next()) {
+			String makh=rs.getString("makh");
+			String hoten=rs.getString("hoten");
+			String diachi=rs.getString("diachi");
+			String sodt=rs.getString("sodt");
+			String email=rs.getString("email");
+			String matkhau=rs.getString("pass");
+		//	ds.add(new sachbean("s0","Từ Ngữ Hán Việt","ha1",60000,"http://www.minhkhai.vn/hinhlon/8935087502012.jpg","Loai1"));
+			//sachbean sach=new sachbean(masach, tensach, tacgia,gia, img, loai);
+			//Giohangbean ghb=new Giohangbean(masach, tensach, tacgia, img, Double.parseDouble(giaban), Double.parseDouble(soluong));
+			khachhangbean kh = new khachhangbean(makh, hoten, diachi, sodt,email, tendn, matkhau);
+			thongtin.add(kh);
+		}	rs.close();dc.cn.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
 	}
+	return thongtin;
+}
 public ArrayList<sachbean> lsmuahang(String makh)throws Exception{
 	ArrayList<sachbean> lsmh = new ArrayList<sachbean>();
 	dc.KetNoi();

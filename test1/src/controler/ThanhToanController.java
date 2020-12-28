@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Lichsumuahang;
+import bean.khachhangbean;
 import bean.loaibean;
 import bean.sachbean;
 import bo.loaibo;
@@ -46,10 +47,12 @@ public class ThanhToanController extends HttpServlet {
 			ArrayList<sachbean> ds= sbo.getsach();
 			loaibo lbo= new loaibo();
 			ArrayList<loaibean> dsloai=lbo.getloai();
+			ArrayList<khachhangbean> khachhang =f.Thongtinkhachhang((String)session.getAttribute("username"));
 			 request.setAttribute("dssach", ds);
 		     request.setAttribute("dsloai", dsloai);
 		     ArrayList<Lichsumuahang> donhang=f.DonHangCanThanhToan((String)session.getAttribute("username"));
 		     request.setAttribute("donhang", donhang);
+		     request.setAttribute("khachhang", khachhang);
 		     RequestDispatcher rd1;
 		     if(session.getAttribute("username")!=null) {
 		    	  rd1=request.getRequestDispatcher("ThanhToan.jsp");

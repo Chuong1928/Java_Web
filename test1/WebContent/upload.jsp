@@ -224,7 +224,7 @@ $(document).ready(function(){
    // AJAX Request
    $.ajax({
      url: 'delete_book_Controller',
-     type: 'GET',
+     type: 'POST',
      data: { id:deleteid },
      success:function(response){
        if(response == 1){

@@ -20,12 +20,12 @@
                         		
                         		<div class="dropdown ">
                         			
-									  <button class="dropbtn"><i class="fas fa-user user_icon"></i>Xin Chào <%=session.getAttribute("username") %></button>
+									  <button class="dropbtn">Xin Chào <%=session.getAttribute("username") %> <i class="fas fa-user-circle user_icon" style=""></i></button>
 									  <div class="dropdown-content">
 									    <a href="profileController">Profile</a>
-									    <a href="ThanhToanController">Đơn hàng</a>
+									   <!--  <a href="ThanhToanController">Đơn hàng</a> -->
 									    <a href="dangxuatController">Log Out</a>
-									    <a class="nav-link active" href="lichsuMHController">Lịch sử mua hàng</a>
+									    <a class="nav-link active" href="lichsuMHController">Đơn hàng của tôi</a>
 									  </div>
 									</div>
                         	<% }else{

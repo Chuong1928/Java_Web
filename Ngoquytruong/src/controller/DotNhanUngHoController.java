@@ -9,20 +9,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bean.mathangbean;
-import bo.mathangbo;
+
+import bean.donviunghobean;
+import bean.dotnhanunghobean;
+import bean.dotunghobean;
+import bo.donviunghobo;
+import bo.dotnhanunghobo;
+import bo.dotunghobo;
 
 /**
- * Servlet implementation class MatHangController
+ * Servlet implementation class DotNhanUngHoController
  */
-@WebServlet("/MatHangController")
-public class MatHangController extends HttpServlet {
+@WebServlet("/DotNhanUngHoController")
+public class DotNhanUngHoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MatHangController() {
+    public DotNhanUngHoController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,28 +39,24 @@ public class MatHangController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		try {
-				
-				String  key = request.getParameter("searchSkins");
-				mathangbo sv=new mathangbo();
-				ArrayList<mathangbean> dsmh=sv.get_from_dao();
-				ArrayList<mathangbean> dstk=new ArrayList<mathangbean>();
-				if(key!=null) {
-					for(mathangbean s:dsmh) {
-						if(s.getTenhang().trim().toLowerCase().equalsIgnoreCase(key.trim().toLowerCase())||
-								s.getNhacungcap().trim().toLowerCase().equalsIgnoreCase(key.trim().toLowerCase())) {
-							dstk.add(s);
-						}
-					}
-				}
-				request.setAttribute("dsmh", dsmh);
-				request.setAttribute("dstk", dstk);
-				RequestDispatcher rd1=request.getRequestDispatcher("index.jsp");
-				rd1.forward(request, response);
+			dotnhanunghobo  dnuhb= new dotnhanunghobo();
+			ArrayList<dotnhanunghobean> dsdnuh=dnuhb.get_from_dao();
+			request.setAttribute("dsdnuh", dsdnuh);
+			
+			
+			dotunghobo  uhb= new dotunghobo();
+			ArrayList<dotunghobean> uh=uhb.get_from_dao();
+			request.setAttribute("dsduh", uh);
+			
+			donviunghobo  dvb= new donviunghobo();
+			ArrayList<donviunghobean> dvuh=dvb.get_from_dao();
+			request.setAttribute("dvuh", dvuh);
+			RequestDispatcher rd1=request.getRequestDispatcher("dotnhanungho.jsp");
+			rd1.forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

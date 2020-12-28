@@ -209,7 +209,7 @@
 								<li>Thành tiền</li>
 								<li><h3><%=gh.checkout()%> đ</h3></li>
 							</ul>
-							<button type="button" class="btn btn-success thanhtoan">Thanh Toán</button>
+							<button type="button" class="btn btn-success thanhtoan">Tiến hành đặt hàng</button>
 						</div>
 						
 						

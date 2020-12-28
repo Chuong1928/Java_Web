@@ -9,11 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.khachhangbean;
 import bean.loaibean;
 import bean.sachbean;
 import bo.loaibo;
 import bo.sachbo;
+import dao.MyFunction;
 
 /**
  * Servlet implementation class profileController
@@ -39,9 +42,13 @@ public class profileController extends HttpServlet {
 		try {
 			
 			sachbo sbo=new sachbo();
+			HttpSession session=request.getSession();
 			ArrayList<sachbean> ds= sbo.getsach();
 			loaibo lbo= new loaibo();
 			ArrayList<loaibean> dsloai=lbo.getloai();
+			MyFunction f=new MyFunction();
+			ArrayList<khachhangbean> khachhang =f.Thongtinkhachhang((String)session.getAttribute("username"));
+			 request.setAttribute("khachhang", khachhang);
 			 request.setAttribute("dssach", ds);
 			 request.setAttribute("dsloai", dsloai);
 			 RequestDispatcher rd1=request.getRequestDispatcher("profile.jsp");

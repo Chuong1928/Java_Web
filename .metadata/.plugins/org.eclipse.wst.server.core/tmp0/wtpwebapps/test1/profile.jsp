@@ -3,6 +3,7 @@
 <%@page import="bean.loaibean"%>
 <%@page import="bo.loaibo"%>
 <%@page import="bean.sachbean"%>
+<%@page import="bean.khachhangbean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bo.sachbo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,6 +37,7 @@
 response.setCharacterEncoding("utf-8");
 	ArrayList<loaibean> dsloai=(ArrayList<loaibean>)request.getAttribute("dsloai");
 	ArrayList<sachbean> ds=(ArrayList<sachbean>)request.getAttribute("dssach");
+	ArrayList<khachhangbean> khachhangbean=(ArrayList<khachhangbean>)request.getAttribute("khachhang");
 	int m=dsloai.size();
 	int n=ds.size();
 	 long soluong=0;
@@ -144,26 +146,32 @@ response.setCharacterEncoding("utf-8");
                                     <div class="form-group row">
                                         <label class="col-sm-4">Tài khoản:</label>
                                         <div class="col-sm-8">
-                                            <span>Trường đẹp trai</span>
+                                            <span><%=khachhangbean.get(0).getTendn()%></span>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-4">Họ và tên:</label>
+                                        <div class="col-sm-8">
+                                            <span><%=khachhangbean.get(0).getHoten()%></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-4">Email:</label>
                                         <div class="col-sm-8">
-                                            <span>anh01663545455@gmail.com</span>
+                                            <span><%=khachhangbean.get(0).getEmail() %></span>
+                                        </div>
+                                    </div>
+                  					 <div class="form-group row">
+                                        <label class="col-sm-4">Địa Chỉ:</label>
+                                        <div class="col-sm-8">
+                                            <span><%=khachhangbean.get(0).getDiachi() %></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-4">Số dư:</label>
-                                        <div class="col-sm-8">
-                                            <span><strong>0</strong> VNĐ</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-4">Đã mua:</label>
-                                        <div class="col-sm-8">
-                                            <span><strong>0</strong> Link</span>
-                                        </div>
+                                            <div class="col-sm-8 ml-auto">
+                                        	     <button type="submit" class="btn btn-primary">Chỉnh Sửa</button>
+                                                <button type="submit" class="btn btn-primary">Lưu lại</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

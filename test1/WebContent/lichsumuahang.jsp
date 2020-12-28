@@ -149,7 +149,8 @@
 							<td><%=cthd.get(i).getMahoadon() %></td>
 							<td><%=cthd.get(i).getTensach()%></td>
 							<td><%=f.sum_Price(cthd.get(i).getSoluongmua(), cthd.get(i).getGia()) %></td>
-							<td><%=cthd.get(i).getDamua().equalsIgnoreCase("1")?"<p>Đã thanh toán <i class=' fas fa-check-circle'></i></p>":"<a href='ThanhToanController' class='btn btn-outline-danger'>Chưa thanh toán <i class='fas fa-bell'></i></a>" %></td>
+							<td><%=cthd.get(i).getDamua().equalsIgnoreCase("1")?"<p>Thành Công <i class=' fas fa-check-circle'></i></p>":
+								"<p  class='btn btn-danger' style='margin:0'>Đang Chờ Duyệt <i class='fas fa-bell'></i></p> <a  class='btn btn-outline-danger' href='#'>Hủy đơn hàng</a>" %></td>
 						</tr>
 						
 					</tbody>
